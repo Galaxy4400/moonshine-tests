@@ -4,12 +4,9 @@ declare(strict_types=1);
 
 namespace App\Providers;
 
-use MoonShine\Decorations\Block;
-use MoonShine\Fields\Text;
-use MoonShine\MoonShine;
+use App\MoonShine\Resources\BlogResource;
 use MoonShine\Menu\MenuItem;
 use MoonShine\Menu\MenuGroup;
-use MoonShine\Pages\ViewPage;
 use MoonShine\Resources\MoonShineUserResource;
 use MoonShine\Resources\MoonShineUserRoleResource;
 use MoonShine\Providers\MoonShineApplicationServiceProvider;
@@ -30,11 +27,7 @@ class MoonShineServiceProvider extends MoonShineApplicationServiceProvider
 	protected function menu(): array
 	{
 		return [
-			MenuItem::make(
-				'Тестовая страница', 
-				ViewPage::make()
-					->setTitle('Тестовый заголовок страницы')
-			),
+			MenuItem::make('Блог', new BlogResource()),
 
 			MenuGroup::make('Система', [
 				MenuItem::make('Администраторы', new MoonShineUserResource()),
